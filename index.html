@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>С Днём Рождения, Аслан! 🎉</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Прелоадер -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-ring"></div>
+      <div class="preloader-text">Готовим подарок<span class="dots"><span>.</span><span>.</span><span>.</span></span></div>
+    </div>
+  </div>
+
+  <!-- Кастомный курсор -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Фоновые частицы -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Индикатор прогресса -->
+  <div class="progress-bar" id="progressBar">
+    <div class="progress-fill" id="progressFill"></div>
+    <div class="progress-dots" id="progressDots"></div>
+  </div>
+
+  <!-- Кнопка музыки -->
+  <button class="music-toggle" id="musicToggle" aria-label="Включить музыку">
+    <svg class="icon-music-on" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="1.6"/>
+      <circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="1.6"/>
+    </svg>
+    <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+  </button>
+  <audio id="bgMusic" loop preload="none">
+    <source src="music/birthday.mp3" type="audio/mpeg">
+  </audio>
+
+  <main class="card-wrapper" id="cardWrapper">
+
+    <!-- ================= СТРАНИЦА 1: ПРИВЕТСТВИЕ ================= -->
+    <section class="page page--hero is-active" data-page="1">
+      <div class="hero-glow"></div>
+      <div class="page-content">
+        <p class="eyebrow reveal-item">Особенный день · 19 лет</p>
+        <h1 class="hero-title">
+          <span class="reveal-line"><span class="reveal-word">С</span> <span class="reveal-word">Днём</span> <span class="reveal-word">Рождения,</span></span>
+          <span class="reveal-line reveal-line--gold"><span class="reveal-word">Аслан!</span></span>
+        </h1>
+        <p class="hero-subtitle reveal-item">Сегодня тебе исполняется 19 лет <span class="emoji-pop">🎉</span></p>
+        <button class="btn btn--primary reveal-item" id="startJourney">
+          <span>Начать путешествие</span>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="scroll-hint reveal-item">
+        <span></span>
+        <p>Листай дальше</p>
+      </div>
+    </section>
+
+    <!-- ================= СТРАНИЦА 2: ЛУЧШИЕ МОМЕНТЫ ================= -->
+    <section class="page page--gallery" data-page="2">
+      <div class="page-content">
+        <p class="eyebrow">Глава первая</p>
+        <h2 class="section-title">Лучшие моменты</h2>
+        <p class="section-subtitle">Немного тёплых воспоминаний о нас</p>
+
+        <div class="gallery-grid">
+          <figure class="gallery-frame" data-caption="Лучший момент">
+            <div class="gallery-frame__inner">
+              <img src="images/photo1.jpg" alt="Фото 1" onerror="this.parentElement.classList.add('no-image')">
+              <span class="gallery-frame__placeholder">Здесь будет фото</span>
+            </div>
+          </figure>
+          <figure class="gallery-frame" data-caption="Незабываемый день">
+            <div class="gallery-frame__inner">
+              <img src="images/photo2.jpg" alt="Фото 2" onerror="this.parentElement.classList.add('no-image')">
+              <span class="gallery-frame__placeholder">Здесь будет фото</span>
+            </div>
+            <figcaption></figcaption>
+          </figure>
+          <figure class="gallery-frame" data-caption="Наши приключения">
+            <div class="gallery-frame__inner">
+              <img src="images/photo3.jpg" alt="Фото 3" onerror="this.parentElement.classList.add('no-image')">
+              <span class="gallery-frame__placeholder">Здесь будет фото</span>
+            </div>
+            <figcaption></figcaption>
+          </figure>
+          <figure class="gallery-frame" data-caption="Еще одно воспоминание">
+            <div class="gallery-frame__inner">
+              <img src="images/photo4.jpg" alt="Фото 4" onerror="this.parentElement.classList.add('no-image')">
+              <span class="gallery-frame__placeholder">Здесь будет фото</span>
+            </div>
+            <figcaption></figcaption>
+          </figure>
+          <figure class="gallery-frame" data-caption="Лучший момент">
+            <div class="gallery-frame__inner">
+              <img src="images/photo5.jpg" alt="Фото 5" onerror="this.parentElement.classList.add('no-image')">
+              <span class="gallery-frame__placeholder">Здесь будет фото</span>
+            </div>
+            <figcaption></figcaption>
+          </figure>
+          <figure class="gallery-frame" data-caption="Незабываемый день">
+            <div class="gallery-frame__inner">
+              <img src="images/photo6.jpg" alt="Фото 6" onerror="this.parentElement.classList.add('no-image')">
+              <span class="gallery-frame__placeholder">Здесь будет фото</span>
+            </div>
+            <figcaption></figcaption>
+          </figure>
+        </div>
+
+        <div class="page-nav">
+          <button class="btn btn--ghost nav-prev">Назад</button>
+          <button class="btn btn--primary nav-next">Далее</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= СТРАНИЦА 3: ПОЧЕМУ ТЫ КРУТОЙ ================= -->
+    <section class="page page--traits" data-page="3">
+      <div class="page-content">
+        <p class="eyebrow">Глава вторая</p>
+        <h2 class="section-title">Почему ты крутой</h2>
+        <p class="section-subtitle">Несколько причин, почему с тобой так классно дружить</p>
+
+        <div class="traits-grid">
+          <div class="trait-card">
+            <span class="trait-card__icon">⭐</span>
+            <h3>Надёжный друг</h3>
+            <p>На тебя всегда можно положиться, что бы ни случилось.</p>
+          </div>
+          <div class="trait-card">
+            <span class="trait-card__icon">😄</span>
+            <h3>Отличное чувство юмора</h3>
+            <p>С тобой никогда не бывает скучно и грустно.</p>
+          </div>
+          <div class="trait-card">
+            <span class="trait-card__icon">💪</span>
+            <h3>Целеустремлённый</h3>
+            <p>Идёшь к своим целям, несмотря ни на что.</p>
+          </div>
+          <div class="trait-card">
+            <span class="trait-card__icon">🚀</span>
+            <h3>Впереди большое будущее</h3>
+            <p>У тебя точно получится всё, что задумал.</p>
+          </div>
+          <div class="trait-card">
+            <span class="trait-card__icon">🎯</span>
+            <h3>Никогда не сдаёшься</h3>
+            <p>Любые трудности тебе по плечу.</p>
+          </div>
+        </div>
+
+        <div class="page-nav">
+          <button class="btn btn--ghost nav-prev">Назад</button>
+          <button class="btn btn--primary nav-next">Далее</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= СТРАНИЦА 4: ПОЗДРАВЛЕНИЕ ================= -->
+    <section class="page page--message" data-page="4">
+      <div class="page-content">
+        <p class="eyebrow">Глава третья</p>
+        <h2 class="section-title">Поздравление</h2>
+        <div class="typewriter-box">
+          <p class="typewriter-text" id="typewriterText"></p>
+          <span class="typewriter-cursor" id="typewriterCursor">|</span>
+        </div>
+        <div class="page-nav">
+          <button class="btn btn--ghost nav-prev">Назад</button>
+          <button class="btn btn--primary nav-next">Далее</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= СТРАНИЦА 5: ЗАГАДАЙ ЖЕЛАНИЕ ================= -->
+    <section class="page page--cake" data-page="5">
+      <div class="page-content">
+        <p class="eyebrow">Глава четвёртая с половиной</p>
+        <h2 class="section-title">Загадай желание</h2>
+        <p class="section-subtitle">Задуй свечу — и пусть всё задуманное обязательно сбудется</p>
+
+        <div class="cake-scene" id="cakeScene">
+          <span class="cake-wish-text" id="cakeWishText">Загадай желание ✨</span>
+          <svg class="cake-svg" viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg">
+            <g class="flame-group" id="flameGroup">
+              <ellipse class="flame-glow" cx="110" cy="44" rx="18" ry="22"></ellipse>
+              <path class="flame" d="M110 28c8 10 8 18 0 26c-8-8-8-16 0-26z"></path>
+            </g>
+            <rect class="candle" x="105" y="50" width="10" height="28" rx="3"></rect>
+            <path class="cake-top" d="M28 108 Q110 88 192 108 L192 126 Q110 108 28 126 Z"></path>
+            <rect class="cake-layer cake-layer--1" x="34" y="116" width="152" height="36" rx="10"></rect>
+            <rect class="cake-layer cake-layer--2" x="22" y="152" width="176" height="40" rx="12"></rect>
+            <g class="cake-dots">
+              <circle cx="58" cy="132" r="4"></circle>
+              <circle cx="88" cy="127" r="4"></circle>
+              <circle cx="118" cy="132" r="4"></circle>
+              <circle cx="148" cy="127" r="4"></circle>
+              <circle cx="176" cy="132" r="4"></circle>
+            </g>
+          </svg>
+          <span class="smoke-puff" id="smokePuff"></span>
+        </div>
+
+        <button class="btn btn--primary" id="blowCandleBtn">
+          <span>Задуть свечу</span>
+          <span aria-hidden="true">💨</span>
+        </button>
+
+        <div class="page-nav">
+          <button class="btn btn--ghost nav-prev">Назад</button>
+          <button class="btn btn--primary nav-next">Далее</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= СТРАНИЦА 6: КОЛЕСО ПРЕДСКАЗАНИЙ ================= -->
+    <section class="page page--wheel" data-page="6">
+      <div class="page-content">
+        <p class="eyebrow">Глава пятая</p>
+        <h2 class="section-title">Колесо предсказаний</h2>
+        <p class="section-subtitle">Крути колесо — узнай, что особенного ждёт тебя в 19 лет</p>
+
+        <div class="wheel-scene">
+          <span class="wheel-pointer">▼</span>
+          <div class="wheel" id="wheel">
+            <span class="wheel-segment-label" style="--i:0">Новые знакомства</span>
+            <span class="wheel-segment-label" style="--i:1">Яркое путешествие</span>
+            <span class="wheel-segment-label" style="--i:2">Большой успех</span>
+            <span class="wheel-segment-label" style="--i:3">Приятный сюрприз</span>
+            <span class="wheel-segment-label" style="--i:4">Крепкая дружба</span>
+            <span class="wheel-segment-label" style="--i:5">Поток вдохновения</span>
+            <span class="wheel-segment-label" style="--i:6">Исполнение мечты</span>
+            <span class="wheel-segment-label" style="--i:7">Финансовый рост</span>
+          </div>
+        </div>
+
+        <button class="btn btn--primary" id="spinWheelBtn">
+          <span>Крутить колесо</span>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 12a9 9 0 1 1-3-6.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M21 4v5h-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="wheel-result" id="wheelResult"></p>
+
+        <div class="page-nav">
+          <button class="btn btn--ghost nav-prev">Назад</button>
+          <button class="btn btn--primary nav-next">Далее</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= СТРАНИЦА 7: 19 В ЦИФРАХ ================= -->
+    <section class="page page--stats" data-page="7">
+      <div class="page-content">
+        <p class="eyebrow">Глава пятая с половиной</p>
+        <h2 class="section-title">19 лет в цифрах</h2>
+        <p class="section-subtitle">Немного статистики — просто повод улыбнуться</p>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-num" data-target="6939">0</div>
+            <p class="stat-label">дней на этой планете</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" data-target="166536">0</div>
+            <p class="stat-label">часов опыта, историй и роста</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" data-target="728" data-suffix="млн">0</div>
+            <p class="stat-label">примерно ударов сердца</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" data-target="1" data-suffix="∞">0</div>
+            <p class="stat-label">крутых историй ещё впереди</p>
+          </div>
+        </div>
+
+        <button class="btn btn--ghost btn--advice" id="adviceBtn">
+          <span>🔮</span>
+          <span id="adviceLabel">Вытянуть совет на сегодня</span>
+        </button>
+
+        <div class="page-nav">
+          <button class="btn btn--ghost nav-prev">Назад</button>
+          <button class="btn btn--primary nav-next">Далее</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= СТРАНИЦА 8: ПОЖЕЛАНИЯ ================= -->
+    <section class="page page--reasons page--wishes" data-page="8">
+      <div class="page-content">
+        <div class="wishes-badge">
+          <span class="wishes-badge__icon">🎁</span>
+          <span class="wishes-badge__text">Страница пожеланий</span>
+        </div>
+        <p class="eyebrow">Глава шестая</p>
+        <h2 class="section-title">19 пожеланий от всей души</h2>
+        <p class="section-subtitle">То, что мы искренне желаем тебе на этот год</p>
+
+        <ol class="reasons-list">
+          <li><span>Уметь поддержать в нужный момент — и получать поддержку в ответ</span></li>
+          <li><span>Чтобы рядом никогда не было скучно</span></li>
+          <li><span>Всегда держать слово — и видеть, что тебе платят тем же</span></li>
+          <li><span>Сохранить своё отличное чувство юмора</span></li>
+          <li><span>Никогда не бояться быть собой</span></li>
+          <li><span>Получать помощь так же легко, как ты её даёшь</span></li>
+          <li><span>Заряжать энергией всех вокруг — и не растрачивать свою</span></li>
+          <li><span>Чтобы тебя слышали так же внимательно, как слушаешь ты</span></li>
+          <li><span>Чтобы рядом были те, с кем легко и в горе, и в радости</span></li>
+          <li><span>Оставаться честным — даже когда это неудобно</span></li>
+          <li><span>Сохранить редкое сочетание — доброту и силу</span></li>
+          <li><span>Расти и не бояться меняться</span></li>
+          <li><span>Чтобы твои идеи заходили ещё дальше</span></li>
+          <li><span>Ценить друзей — и быть оценённым ими в ответ</span></li>
+          <li><span>Сохранить свой крутой вкус во всём</span></li>
+          <li><span>Чаще радоваться мелочам</span></li>
+          <li><span>Смело планировать будущее</span></li>
+          <li><span>Вдохновлять не словами, а делом</span></li>
+          <li><span>Просто оставаться собой — этого достаточно</span></li>
+        </ol>
+
+        <div class="page-nav">
+          <button class="btn btn--ghost nav-prev">Назад</button>
+          <button class="btn btn--primary nav-next">Далее</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= СТРАНИЦА 9: ФОТОАЛЬБОМ ================= -->
+    <section class="page page--polaroid" data-page="9">
+      <div class="page-content">
+        <p class="eyebrow">Глава четвёртая</p>
+        <h2 class="section-title">Фотоальбом</h2>
+        <p class="section-subtitle">Маленькая коллекция дорогих моментов</p>
+
+        <div class="polaroid-grid">
+          <div class="polaroid"><div class="polaroid__photo"><img src="images/photo7.jpg" alt="" onerror="this.parentElement.classList.add('no-image')"><span class="polaroid__placeholder">Здесь будет фото</span></div><p class="polaroid__caption">#1</p></div>
+          <div class="polaroid"><div class="polaroid__photo"><img src="images/photo8.jpg" alt="" onerror="this.parentElement.classList.add('no-image')"><span class="polaroid__placeholder">Здесь будет фото</span></div><p class="polaroid__caption">#2</p></div>
+          <div class="polaroid"><div class="polaroid__photo"><img src="images/photo9.jpg" alt="" onerror="this.parentElement.classList.add('no-image')"><span class="polaroid__placeholder">Здесь будет фото</span></div><p class="polaroid__caption">#3</p></div>
+          <div class="polaroid"><div class="polaroid__photo"><img src="images/photo10.jpg" alt="" onerror="this.parentElement.classList.add('no-image')"><span class="polaroid__placeholder">Здесь будет фото</span></div><p class="polaroid__caption">#4</p></div>
+          <div class="polaroid"><div class="polaroid__photo"><img src="images/photo11.jpg" alt="" onerror="this.parentElement.classList.add('no-image')"><span class="polaroid__placeholder">Здесь будет фото</span></div><p class="polaroid__caption">#5</p></div>
+          <div class="polaroid"><div class="polaroid__photo"><img src="images/photo12.jpg" alt="" onerror="this.parentElement.classList.add('no-image')"><span class="polaroid__placeholder">Здесь будет фото</span></div><p class="polaroid__caption">#6</p></div>
+          <div class="polaroid"><div class="polaroid__photo"><img src="images/photo13.jpg" alt="" onerror="this.parentElement.classList.add('no-image')"><span class="polaroid__placeholder">Здесь будет фото</span></div><p class="polaroid__caption">#7</p></div>
+          <div class="polaroid"><div class="polaroid__photo"><img src="images/photo14.jpg" alt="" onerror="this.parentElement.classList.add('no-image')"><span class="polaroid__placeholder">Здесь будет фото</span></div><p class="polaroid__caption">#8</p></div>
+        </div>
+
+        <div class="page-nav">
+          <button class="btn btn--ghost nav-prev">Назад</button>
+          <button class="btn btn--primary nav-next">Далее</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= СТРАНИЦА 10: ФИНАЛ ================= -->
+    <section class="page page--finale" data-page="10">
+      <canvas id="finale-canvas"></canvas>
+      <div class="page-content">
+        <h2 class="finale-title">С 19-летием, Аслан!</h2>
+        <div class="finale-heart">❤️</div>
+        <p class="finale-thanks">Спасибо за дружбу!</p>
+        <button class="btn btn--primary btn--again" id="watchAgain">
+          <span>Посмотреть снова</span>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4v6h6M20 20v-6h-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 14a8 8 0 1 0 1.5-8.5L4 8M18.5 10a8 8 0 0 0-1.5-1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Секретный пасхальный сюрприз (открывается кодом ↑↑↓↓←→←→) ===== -->
+  <div class="secret-overlay" id="secretOverlay">
+    <canvas id="secret-canvas"></canvas>
+    <div class="secret-overlay__content">
+      <span class="secret-overlay__star">✨</span>
+      <h3>Тайное послание</h3>
+      <p>Ты нашёл секрет! Это маленький бонус специально для тебя — пусть 19 лет станут годом, в котором сбудется то, в чём ты пока боишься признаться даже себе.</p>
+      <button class="btn btn--primary" id="closeSecret"><span>Спасибо, закрыть</span></button>
+    </div>
+  </div>
+
+  <!-- Подсказка про пасхалку, тихо появляется один раз на финальной странице -->
+  <div class="easter-hint" id="easterHint">Подсказка: попробуй клавиши ↑ ↑ ↓ ↓ ← → ← →</div>
+
+<script src="script.js"></script>
+</body>
+</html>
