@@ -41,7 +41,9 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  min-height: 100%;
   height: -webkit-fill-available;
+  height: var(--app-height, 100vh);
 }
 
 body {
@@ -49,15 +51,21 @@ body {
   background: linear-gradient(160deg, #f8f9fb 0%, var(--c-gray) 45%, #eef2f8 100%);
   color: var(--c-text-main);
   overflow-x: hidden;
+  overflow-y: hidden;
   min-height: 100vh;
   min-height: -webkit-fill-available;
+  min-height: var(--app-height, 100vh);
+  height: var(--app-height, 100vh);
   cursor: none;
   overscroll-behavior-y: none;
   -webkit-text-size-adjust: 100%;
 }
 
 @supports (height: 100dvh) {
-  body { min-height: 100dvh; }
+  html,
+  body {
+    min-height: var(--app-height, 100dvh);
+  }
 }
 
 @media (max-width: 860px), (hover: none) {
@@ -167,8 +175,6 @@ button {
   background: rgba(28, 42, 68, 0.18);
   transition: background 0.4s var(--ease-soft), transform 0.4s var(--ease-soft), width 0.4s var(--ease-soft);
 }
-.page--hero ~ .progress-bar .dot,
-.page--finale.is-active ~ .progress-bar { }
 .progress-dots .dot.is-active {
   background: var(--c-gold);
   width: 24px;
@@ -225,13 +231,18 @@ body.is-dark-page .music-toggle {
 /* =========================================================
    СТРАНИЦЫ
    ========================================================= */
-.card-wrapper { position: relative; z-index: 1; }
+.card-wrapper {
+  position: relative;
+  z-index: 1;
+  min-height: var(--app-height, 100vh);
+}
 
 .page {
   position: fixed;
   inset: 0;
+  height: var(--app-height, 100vh);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: calc(clamp(90px, 12vh, 130px) + var(--safe-t)) calc(clamp(20px, 6vw, 70px) + var(--safe-r)) calc(clamp(60px, 8vh, 90px) + var(--safe-b)) calc(clamp(20px, 6vw, 70px) + var(--safe-l));
   opacity: 0;
@@ -257,7 +268,7 @@ body.is-dark-page .music-toggle {
 .page-content {
   width: 100%;
   max-width: 1080px;
-  margin: 0 auto;
+  margin: auto;
   text-align: center;
 }
 

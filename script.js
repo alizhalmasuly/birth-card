@@ -10,6 +10,22 @@ let isAnimating = false;
 const pages = document.querySelectorAll('.page');
 const cardWrapper = document.getElementById('cardWrapper');
 
+function setViewportHeight() {
+  const viewportHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+  document.documentElement.style.setProperty('--app-height', `${viewportHeight}px`);
+}
+
+function initViewportHeight() {
+  setViewportHeight();
+  window.addEventListener('resize', setViewportHeight);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', setViewportHeight);
+  }
+  window.addEventListener('orientationchange', () => {
+    setTimeout(setViewportHeight, 250);
+  });
+}
+
 /* =========================================================
    ПРЕЛОАДЕР
    ========================================================= */
@@ -99,6 +115,7 @@ function goToPage(pageNumber) {
   const current = document.querySelector(`.page[data-page="${currentPage}"]`);
   const next = document.querySelector(`.page[data-page="${pageNumber}"]`);
 
+  next.scrollTop = 0;
   current.classList.add('is-leaving');
   current.classList.remove('is-active');
 
@@ -146,14 +163,19 @@ function initNavigation() {
 
   // Свайпы на мобильных
   let touchStartX = 0;
+  let touchStartY = 0;
   cardWrapper.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
   }, { passive: true });
   cardWrapper.addEventListener('touchend', (e) => {
     const touchEndX = e.changedTouches[0].screenX;
-    const diff = touchEndX - touchStartX;
-    if (Math.abs(diff) < 60) return;
-    if (diff < 0) goToPage(currentPage + 1);
+    const touchEndY = e.changedTouches[0].screenY;
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+
+    if (Math.abs(diffX) < 70 || Math.abs(diffX) < Math.abs(diffY) * 1.25) return;
+    if (diffX < 0) goToPage(currentPage + 1);
     else goToPage(currentPage - 1);
   }, { passive: true });
 }
@@ -532,6 +554,7 @@ function initMusic() {
    ИНИЦИАЛИЗАЦИЯ
    ========================================================= */
 document.addEventListener('DOMContentLoaded', () => {
+  initViewportHeight();
   initPreloader();
   initCustomCursor();
   initProgressDots();
