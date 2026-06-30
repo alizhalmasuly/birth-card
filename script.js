@@ -587,31 +587,17 @@ function initClickSparks() {
 }
 
 /* =========================================================
-   БОНУС 2: СЕКРЕТНАЯ ПАСХАЛКА (КОНАМИ-КОД)
-   ↑ ↑ ↓ ↓ ← → ← → — открывает тайное послание с собственным
+   БОНУС 2: СЕКРЕТНАЯ ПАСХАЛКА (ВСТРЯСКА ТЕЛЕФОНА)
+   Встряска телефона открывает тайное послание с собственным
    мини-салютом на отдельном canvas.
    ========================================================= */
 function initEasterEgg() {
-  const sequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
-  let progress = 0;
-
   const overlay = document.getElementById('secretOverlay');
   const closeBtn = document.getElementById('closeSecret');
   const hint = document.getElementById('easterHint');
   if (!overlay || !closeBtn) return;
 
-  window.addEventListener('keydown', (e) => {
-    // Не мешаем обычной навигации стрелками влево/вправо по страницам открытки
-    if (e.key === sequence[progress]) {
-      progress++;
-    } else {
-      progress = (e.key === sequence[0]) ? 1 : 0;
-    }
-    if (progress === sequence.length) {
-      progress = 0;
-      openSecretOverlay();
-    }
-  });
+  initShakeTrigger();
 
   closeBtn.addEventListener('click', closeSecretOverlay);
   overlay.addEventListener('click', (e) => {
@@ -637,6 +623,60 @@ function initEasterEgg() {
   }
   function closeSecretOverlay() {
     overlay.classList.remove('is-visible');
+  }
+
+  function initShakeTrigger() {
+    if (!('DeviceMotionEvent' in window)) return;
+
+    let motionEnabled = false;
+    let lastMagnitude = 0;
+    let lastShakeAt = 0;
+    const shakeThreshold = 16;
+    const shakeCooldown = 1800;
+
+    function handleMotion(e) {
+      const acceleration = e.accelerationIncludingGravity || e.acceleration;
+      if (!acceleration) return;
+
+      const x = acceleration.x || 0;
+      const y = acceleration.y || 0;
+      const z = acceleration.z || 0;
+      const magnitude = Math.sqrt((x * x) + (y * y) + (z * z));
+      const movement = Math.abs(magnitude - lastMagnitude);
+      const now = Date.now();
+
+      if (lastMagnitude && movement > shakeThreshold && now - lastShakeAt > shakeCooldown) {
+        lastShakeAt = now;
+        openSecretOverlay();
+      }
+
+      lastMagnitude = magnitude;
+    }
+
+    function enableMotion() {
+      if (motionEnabled) return;
+      motionEnabled = true;
+      window.addEventListener('devicemotion', handleMotion, { passive: true });
+    }
+
+    if (typeof DeviceMotionEvent.requestPermission === 'function') {
+      let permissionRequested = false;
+      const requestMotionPermission = () => {
+        if (permissionRequested) return;
+        permissionRequested = true;
+
+        DeviceMotionEvent.requestPermission()
+          .then((permission) => {
+            if (permission === 'granted') enableMotion();
+          })
+          .catch(() => {});
+      };
+
+      document.addEventListener('pointerdown', requestMotionPermission, { once: true });
+      document.addEventListener('touchend', requestMotionPermission, { once: true });
+    } else {
+      enableMotion();
+    }
   }
 }
 
