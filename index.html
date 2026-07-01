@@ -2,7 +2,8 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f4f6fb">
 <title>С Днём Рождения, Аслан! 🎉</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,8 +54,8 @@
       <div class="page-content">
         <div class="hero-photo reveal-item">
           <div class="hero-photo__inner">
-            <img src="images/photo15.jpg" alt="Photo" onerror="this.closest('.hero-photo').classList.add('no-image')">
-            <span class="hero-photo__placeholder">Photo</span>
+            <img src="images/hero-photo.jpg" alt="Аслан" onerror="this.parentElement.parentElement.classList.add('no-image')">
+            <span class="hero-photo__placeholder">Здесь будет фото</span>
           </div>
         </div>
         <p class="eyebrow reveal-item">Особенный день · 19 лет</p>
@@ -93,35 +94,30 @@
               <img src="images/photo2.jpg" alt="Фото 2" onerror="this.parentElement.classList.add('no-image')">
               <span class="gallery-frame__placeholder">Здесь будет фото</span>
             </div>
-            <figcaption></figcaption>
           </figure>
           <figure class="gallery-frame" data-caption="Наши приключения">
             <div class="gallery-frame__inner">
               <img src="images/photo3.jpg" alt="Фото 3" onerror="this.parentElement.classList.add('no-image')">
               <span class="gallery-frame__placeholder">Здесь будет фото</span>
             </div>
-            <figcaption></figcaption>
           </figure>
           <figure class="gallery-frame" data-caption="Еще одно воспоминание">
             <div class="gallery-frame__inner">
               <img src="images/photo4.jpg" alt="Фото 4" onerror="this.parentElement.classList.add('no-image')">
               <span class="gallery-frame__placeholder">Здесь будет фото</span>
             </div>
-            <figcaption></figcaption>
           </figure>
           <figure class="gallery-frame" data-caption="Лучший момент">
             <div class="gallery-frame__inner">
               <img src="images/photo5.jpg" alt="Фото 5" onerror="this.parentElement.classList.add('no-image')">
               <span class="gallery-frame__placeholder">Здесь будет фото</span>
             </div>
-            <figcaption></figcaption>
           </figure>
           <figure class="gallery-frame" data-caption="Незабываемый день">
             <div class="gallery-frame__inner">
               <img src="images/photo6.jpg" alt="Фото 6" onerror="this.parentElement.classList.add('no-image')">
               <span class="gallery-frame__placeholder">Здесь будет фото</span>
             </div>
-            <figcaption></figcaption>
           </figure>
         </div>
 
@@ -384,7 +380,7 @@
 
   </main>
 
-  <!-- ===== Секретный пасхальный сюрприз (открывается встряской телефона) ===== -->
+  <!-- ===== Секретный пасхальный сюрприз (открывается кодом ↑↑↓↓←→←→) ===== -->
   <div class="secret-overlay" id="secretOverlay">
     <canvas id="secret-canvas"></canvas>
     <div class="secret-overlay__content">
@@ -396,7 +392,7 @@
   </div>
 
   <!-- Подсказка про пасхалку, тихо появляется один раз на финальной странице -->
-  <div class="easter-hint" id="easterHint">Подсказка: встряхни телефон</div>
+  <div class="easter-hint" id="easterHint">Подсказка: попробуй клавиши ↑ ↑ ↓ ↓ ← → ← →</div>
 
 <script src="script.js"></script>
 </body>
